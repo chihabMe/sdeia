@@ -6,7 +6,7 @@ from django.utils import timezone
 from PIL import Image
 # Create your models here.
 def namer(instance,filename):
-    name = instance.user.username+filename
+    name = instance.user.username+"/"+filename
     print(name)
     return name
 class Post(models.Model):
@@ -14,14 +14,14 @@ class Post(models.Model):
     image = models.ImageField(upload_to=namer,null=True,blank=True)
     slug = models.SlugField(blank=True,null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE,related_name='user_posts')
-    likes = models.ManyToManyField(User,related_name='user_posts_likes')
+    likes = models.ManyToManyField(User,related_name='user_posts_likes',blank=True)
     public = models.BooleanField(default=True)
     published = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     def get_likes_count(self):
         return self.likes.all().count()
     def get_comments_count(self):
-        return self.comments.all().count()
+        return self.post_comments.all().count()
     def get_post_time(self):
         res = timezone.now()-self.published
         res = res.total_seconds()
@@ -43,12 +43,14 @@ class Post(models.Model):
             if image.width > 650 or image.height>400:
                 output_size = (650,400)
                 image.thumbnail(output_size)
-                image.save(self.path)
+                image.save(self.image.path)
     def __str__(self):
-        return self.title
+        return self.body[0:20]
     
     def get_absolute_url(self):
         pass 
+    class Meta:
+        ordering = ('-published','-updated')
 
 class Comment(models.Model):
     body = models.TextField(blank=True,null=True)

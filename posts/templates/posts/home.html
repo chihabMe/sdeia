@@ -14,12 +14,14 @@
 
     <div class="main--feed">
         <div class="posts">
+            {% for post in posts %}
             <div class="post">
                 <div class="post--top">
-                    <img src="https://picsum.photos/40/40" alt="" class="post--user--image">
+                    <img src="{{post.user.user_profile.image.url}}" alt="" class="post--user--image">
                     <div class="post--user--info">
-                        <h3 class="post--user--username">chihab</h3>
-                        <div class="post--date">published on 2020/2/2</div>
+                        <h3 class="post--user--username">{{post.user.username}}</h3>
+                        <div class="post--date">{{post.get_post_time}} ago</div>
+                        <div class="post--date">published on {{post.published |date:"M d, Y"}}</div>
                         <div class="post--tags">
                             <span class="post--tags--title"> tags </span>
                             <div class="post--tag">fun</div>
@@ -29,27 +31,27 @@
                     </div>
                 </div>
                 <div class="post--content">
-                    <p class="post--content--text">Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                        Obcaecati vel a tempore ipsam, mollitia laboriosam ratione sint doloribus velit
-                        et magni, ad reiciendis exercitationem eveniet deleniti blanditiis fugiat veniam dolores.
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ab delectus voluptatem omnis in, nihil
-                        debitis officia hic tenetur doloremque cumque non tempore perspiciatis fuga sint eius voluptates
-                        deleniti laudantium quisquam!
+                    {% if post.body %}
+                    <p class="post--content--text">
+                        {{post.body}}
                     </p>
-                    <img src="https://picsum.photos/800/500" alt="" class="post--content--image">
+                    {% endif %}
+                    {% if post.image %}
+                    <img src="{{post.image.url}}" alt="" class="post--content--image">
+                    {% endif %}
                 </div>
                 <div class="post--infos">
                     <div class=" post--infos--likes">
                         <svg class="post--like--icon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                           </svg>
-                          <span class="post--infos--like--count">32</span>
+                          <span class="post--infos--like--count">{{post.get_likes_count}}</span>
                     </div>
                     <div class="post--infos--comments">
                         <svg class="post--comment--icon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
                           </svg>
-                        <span class="post--infos--comments--count">23</span>
+                        <span class="post--infos--comments--count">{{post.get_comments_count}}</span>
                     </div>
                 </div>
                 <div class="post--comment--add">
@@ -57,135 +59,8 @@
                     <button class="post--comment--add--button">comment</button>
                 </div>
             </div>
-            <div class="post">
-                <div class="post--top">
-                    <img src="https://picsum.photos/40/40" alt="" class="post--user--image">
-                    <div class="post--user--info">
-                        <h3 class="post--user--username">chihab</h3>
-                        <div class="post--date">published on 2020/2/2</div>
-                        <div class="post--tags">
-                            <span class="post--tags--title"> tags </span>
-                            <div class="post--tag">fun</div>
-                            <div class="post--tag">programming</div>
-                            <div class="post--tag">django</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="post--content">
-                    <p class="post--content--text">Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                        Obcaecati vel a tempore ipsam, mollitia laboriosam ratione sint doloribus velit
-                        et magni, ad reiciendis exercitationem eveniet deleniti blanditiis fugiat veniam dolores.
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ab delectus voluptatem omnis in, nihil
-                        debitis officia hic tenetur doloremque cumque non tempore perspiciatis fuga sint eius voluptates
-                        deleniti laudantium quisquam!
-                    </p>
-                    <img src="https://picsum.photos/800/500" alt="" class="post--content--image">
-                </div>
-                <div class="post--infos">
-                    <div class=" post--infos--likes">
-                        <svg class="post--like--icon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                          </svg>
-                          <span class="post--infos--like--count">32</span>
-                    </div>
-                    <div class="post--infos--comments">
-                        <svg class="post--comment--icon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-                          </svg>
-                        <span class="post--infos--comments--count">23</span>
-                    </div>
-                </div>
-                <div class="post--comment--add">
-                    <input type="text" class="post--comment--add--input">
-                    <button class="post--comment--add--button">comment</button>
-                </div>
-            </div>
-            <div class="post">
-                <div class="post--top">
-                    <img src="https://picsum.photos/40/40" alt="" class="post--user--image">
-                    <div class="post--user--info">
-                        <h3 class="post--user--username">chihab</h3>
-                        <div class="post--date">published on 2020/2/2</div>
-                        <div class="post--tags">
-                            <span class="post--tags--title"> tags </span>
-                            <div class="post--tag">fun</div>
-                            <div class="post--tag">programming</div>
-                            <div class="post--tag">django</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="post--content">
-                    <p class="post--content--text">Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                        Obcaecati vel a tempore ipsam, mollitia laboriosam ratione sint doloribus velit
-                        et magni, ad reiciendis exercitationem eveniet deleniti blanditiis fugiat veniam dolores.
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ab delectus voluptatem omnis in, nihil
-                        debitis officia hic tenetur doloremque cumque non tempore perspiciatis fuga sint eius voluptates
-                        deleniti laudantium quisquam!
-                    </p>
-                    <img src="https://picsum.photos/800/500" alt="" class="post--content--image">
-                </div>
-                <div class="post--infos">
-                    <div class=" post--infos--likes">
-                        <svg class="post--like--icon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                          </svg>
-                          <span class="post--infos--like--count">32</span>
-                    </div>
-                    <div class="post--infos--comments">
-                        <svg class="post--comment--icon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-                          </svg>
-                        <span class="post--infos--comments--count">23</span>
-                    </div>
-                </div>
-                <div class="post--comment--add">
-                    <input type="text" class="post--comment--add--input">
-                    <button class="post--comment--add--button">comment</button>
-                </div>
-            </div>
-            <div class="post">
-                <div class="post--top">
-                    <img src="https://picsum.photos/40/40" alt="" class="post--user--image">
-                    <div class="post--user--info">
-                        <h3 class="post--user--username">chihab</h3>
-                        <div class="post--date">published on 2020/2/2</div>
-                        <div class="post--tags">
-                            <span class="post--tags--title"> tags </span>
-                            <div class="post--tag">fun</div>
-                            <div class="post--tag">programming</div>
-                            <div class="post--tag">django</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="post--content">
-                    <p class="post--content--text">Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-                        Obcaecati vel a tempore ipsam, mollitia laboriosam ratione sint doloribus velit
-                        et magni, ad reiciendis exercitationem eveniet deleniti blanditiis fugiat veniam dolores.
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ab delectus voluptatem omnis in, nihil
-                        debitis officia hic tenetur doloremque cumque non tempore perspiciatis fuga sint eius voluptates
-                        deleniti laudantium quisquam!
-                    </p>
-                    <img src="https://picsum.photos/800/500" alt="" class="post--content--image">
-                </div>
-                <div class="post--infos">
-                    <div class=" post--infos--likes">
-                        <svg class="post--like--icon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                          </svg>
-                          <span class="post--infos--like--count">32</span>
-                    </div>
-                    <div class="post--infos--comments">
-                        <svg class="post--comment--icon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
-                          </svg>
-                        <span class="post--infos--comments--count">23</span>
-                    </div>
-                </div>
-                <div class="post--comment--add">
-                    <input type="text" class="post--comment--add--input">
-                    <button class="post--comment--add--button">comment</button>
-                </div>
-            </div>
+            {% endfor  %}
+
         </div>
     </div>
     <div class="right--side">
