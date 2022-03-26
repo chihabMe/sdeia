@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{{request.user}} home{% endblock title %}
+
+{% block links %}
+<link rel='stylesheet' href="{% static 'css/home.css' %}">
+{% endblock links %}
+
+
+
+
+{% block content %}
+<section class='home--page'>
+
+    <div class="main--feed">
+        <div class="posts">
+            <div class="post">
+                <div class="post--top">
+                    <img src="" alt="" class="post--user--image">
+                    <div class="post--user--info">
+                        <h3 class="post--user--username">chihab</h3>
+                        <div class="post--date">published on 2020/2/2</div>
+                        <div class="post--tags">
+                            <span class="post--tags--title"> tags </span>
+                            <div class="post--tag">fun</div>
+                            <div class="post--tag">programming</div>
+                            <div class="post--tag">django</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="post--content">
+                    <p class="post--content--text">Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                        Obcaecati vel a tempore ipsam, mollitia laboriosam ratione sint doloribus velit
+                        et magni, ad reiciendis exercitationem eveniet deleniti blanditiis fugiat veniam dolores.
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ab delectus voluptatem omnis in, nihil
+                        debitis officia hic tenetur doloremque cumque non tempore perspiciatis fuga sint eius voluptates
+                        deleniti laudantium quisquam!
+                    </p>
+                    <img src="" alt="" class="post--content--image">
+                </div>
+                <div class="post--infos"></div>
+            </div>
+        </div>
+    </div>
+    <div class="right--side">
+        <div class="right--side--post--add">
+            <form class="post--add--form">
+                <textarea type="text" class="post--add--input"></textarea>
+                <button class="post--add--button">post</button>
+            </form>
+        </div>
+
+        <div class="suggestions">
+            <h3 class="suggestions--title">
+                suggestions
+            </h3>
+            <div class="suggestions--users">
+                <h4 class="suggestions--user--title">people you may like </h4>
+                <h5 class="suggestion">Chihab</h5>
+                <h5 class="suggestion">adam</h5>
+                <h5 class="suggestion">amin</h5>
+            </div>
+
+            <div class="suggestions--posts">
+                <h4 class="suggestions--user--title">posts you may like </h4>
+                <h5 class="suggestion">
+                    seen by 39 user </h5>
+                <h5 class="suggestion">its my post title liked by 13 people </h5>
+                <h5 class="suggestion">its my post title liked by 13 people </h5>
+            </div>
+            <div class="suggestions--most--visited--posts">
+                <h4 class="suggestions--most--visited--title">most visited posts </h4>
+                <h5 class="suggestion">
+                    title : seen by 39 user </h5>
+                <h5 class="suggestion">
+                    title :  seen by 39 user </h5>
+                <h5 class="suggestion">
+                    title :  seen by 39 user </h5>
+            </div>
+
+            <div class="suggestions--liked--visited--posts">
+                <h4 class="suggestions--most--liked--title">most liked posts </h4>
+                <h5 class="suggestion">
+                    title : liked by 39 user </h5>
+                <h5 class="suggestion">
+                    title :  liked by 39 user </h5>
+                <h5 class="suggestion">
+                    title :  liked by 39 user </h5>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock content %}
+
+{% block js %}
+<!--<script src="{% static 'css/home.js' %}"></script>
+-->
+{% endblock js %}

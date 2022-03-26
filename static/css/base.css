@@ -1,0 +1,39 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+:root{
+    --main-color:black;
+    --text-color:black;
+    --primary-color:black;
+    --blue-color:black;
+    --gray-color:rgb(71, 71, 71);
+    --gray-color-hard:rgb(37, 37, 37);
+    --gray-color-light:rgb(212, 219, 233);
+    --black-color:rgb(0, 0, 0);
+    --blue--color:rgb(28, 107, 107);
+    --light--color:white;
+    --red--color:rgb(224, 97, 97);
+
+
+}
+
+html{
+    font-size: 15px;
+
+}
+
+a{
+    text-decoration: none;
+}
+body{
+    font-family: sans-serif;
+
+}
+.container{
+    min-height: 100vh;
+    width: 100%;
+    max-width: 1300px;
+    margin: 0 auto;
+}
