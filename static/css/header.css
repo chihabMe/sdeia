@@ -191,7 +191,6 @@ user account
 }
 @media screen and (max-width:750px){
     html{
-        background-color: aqua;
         font-size: 14px;
         
     }
@@ -207,7 +206,6 @@ user account
 }
 @media screen and (max-width:450px){
     html{
-        background-color: aqua;
         font-size: 12px;
         
     }
@@ -215,5 +213,10 @@ user account
     .header--search{
 
         display: none;
+    }
+
+    .header--menu{
+        gap:2rem;
+        justify-content: space-around;
     }
 }

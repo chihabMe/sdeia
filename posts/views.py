@@ -4,6 +4,7 @@ from .models import Post
 def home(request):
     posts = Post.objects.all()
     context  ={
-        'posts':posts
+        'posts':posts,
+        'page':'home'
     }
     return render(request,'posts/home.html',context)

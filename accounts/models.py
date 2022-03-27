@@ -21,10 +21,11 @@ class Profile(models.Model):
         return reverse("accounts:profile", kwargs={"username": self.username})
     def get_likes_count(self):
         return self.likes.all().count()
-
+    def get_posts_count(self):
+        return self.user.user_posts.all().count()
     def get_followers_count(self):
         return self.followers.all().count()
-    def get_follwing_count(self):
+    def get_following_count(self):
         return self.follwing.all().count()
     def save(self,*args, **kwargs):
         super(Profile,self).save(*args, **kwargs)
