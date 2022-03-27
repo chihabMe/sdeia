@@ -10,8 +10,38 @@
 
 
 {% block content %}
-<section class='home--page'>
+<section class='home--page' id="home--page">
+<div class="model-ng" id="model-ng">
+    <div class="comments--model" >
+        <div class="comment--model--images">
+            <img src="https://picsum.photos/400/570" alt="" class="comments--model--image">
+        </div>
+        <div class="comments--model--comments">
 
+            <div class="comments--model--comment">
+                <div class="model--comment--left">
+                <img src="https://picsum.photos/35/35" alt="" class="model--comment--iamge">
+            </div>
+            <div class="model--comment--right">
+                <p class="model--comment--text"><span class="model--comment--username">Chihab </span> ipsum, dolor sit amet consectetur adipisicing elit. Aliquid est nostrum eos illo a ullam dolore quia, nesciunt laboriosam impedit vel iste ratione consequatur quod ab atque dolorum quas cumque!</p>
+                <div class="model--comment--actions">
+                    <button class="model--comment--like--add">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                          </svg>
+                          <span class="model--comment--like--count">32</span>
+                    </button>
+                    <button class="model--comment--replay">replay</button>
+                </div>
+            </div>
+            </div>
+
+        <!--added-->
+      
+    </div>
+
+    </div>
+</div>
     <div class="main--feed">
         <div class="posts">
             {% for post in posts %}
@@ -139,4 +169,5 @@
 
 <script src="{% static 'js/home/like.js' %}"></script>
 <script src="{% static 'js/home/comment.js' %}"></script>
+<script src="{% static 'js/home/model.js' %}"></script>
 {% endblock js %}
