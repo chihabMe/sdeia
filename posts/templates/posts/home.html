@@ -42,9 +42,14 @@
                 </div>
                 <div class="post--infos">
                     <div class=" post--infos--likes">
-                        <svg class="post--like--icon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                          </svg>
+                        <button  class="post--like--add--button" postId="{{post.id}}">
+                                    
+                            <svg class="post--like--icon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                              </svg>
+
+                        </button>
+
                           <span class="post--infos--like--count">{{post.get_likes_count}}</span>
                     </div>
                     <div class="post--infos--comments">
@@ -54,10 +59,10 @@
                         <span class="post--infos--comments--count">{{post.get_comments_count}}</span>
                     </div>
                 </div>
-                <div class="post--comment--add">
+                <form class="post--comment--add" postId="{{post.id}}">
                     <input type="text" class="post--comment--add--input">
                     <button class="post--comment--add--button">comment</button>
-                </div>
+                </form>
             </div>
             {% endfor  %}
 
@@ -127,6 +132,11 @@
 {% endblock content %}
 
 {% block js %}
-<!--<script src="{% static 'css/home.js' %}"></script>
+<!--<script src="{%  static 'css/home.js' %}"></script>
 -->
+<script  src="{% static 'js/csrf.js' %}"></script>
+<script src="{% static 'js/home/home.js' %}"></script>
+
+<script src="{% static 'js/home/like.js' %}"></script>
+<script src="{% static 'js/home/comment.js' %}"></script>
 {% endblock js %}

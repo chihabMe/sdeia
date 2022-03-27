@@ -137,16 +137,31 @@ post content
     height: 2rem;
     cursor: pointer;
 }
-
+/* post like add button */
+.post--like--add--button{
+    background-color: transparent;
+    border:none;
+    outline: none;
+    display: flex;
+    align-items: center;
+    color: var(--gray-color);
+    
+}
+.post--like--add--button>svg{
+    color: var(--red--color) !important;;
+    width: 2rem;
+    height: 2rem;
+    cursor: pointer;  
+}
+.post--like--add--button.liked>svg{
+    fill:var(--red--color)
+}
 .post--infos>div{
     display: flex;
     align-items: center;
     gap: 0.4rem;
 }
-.post--like--icon{
-    color: var(--red--color) !important;;
 
-}
 
 .post--like--icon:hover{
     fill: var(--red--color);    

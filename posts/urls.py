@@ -4,4 +4,6 @@ app_name = 'posts'
 
 urlpatterns = [
     path('',views.home,name='home'),
+    path("post/like-add", views.post_like, name="post_like"),
+    path("post/comment-add", views.comment_add, name="post_comment")
 ]
