@@ -29,10 +29,10 @@ class Post(models.Model):
             res = str(int(res))+" s"
         elif res >=60 and res <60*60:
             res = str(int(res/60))+" min"
-        elif res <60*60*60:
+        elif res <60*60*24:
             res = str(int(res/(60*60)))+" h"
         else:
-            res =str(int(res/(60*60*60)))+" days"
+            res =str(int(res/(60*60*24)))+" days"
         return res
     def save(self,*args, **kwargs):
         if not self.slug :
@@ -41,7 +41,7 @@ class Post(models.Model):
         if self.image:
             image = Image.open(self.image.path)
             if image.width > 650 or image.height>400:
-                output_size = (650,400)
+                output_size = (650,560)
                 image.thumbnail(output_size)
                 image.save(self.image.path)
     def __str__(self):
@@ -57,3 +57,8 @@ class Comment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE,related_name='user_comments')
     likes = models.ManyToManyField(User,related_name='user_comments_likes')
     post  = models.ForeignKey(Post, on_delete=models.CASCADE,related_name='post_comments')
+    def get_likes_count(self):
+        return self.likes.all().count()
+    def __str__(self):
+        return self.body[0:20]
+    
