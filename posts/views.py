@@ -7,6 +7,39 @@ from django.core import serializers
 
 import json
 # Create your views here.
+def post_add(request):
+    data={}
+    if request.method=='POST':
+        body = request.POST.get('body')
+        tags=[]
+        body_words_list = body.split(' ')
+        for word in body_words_list:
+            if '#' in word:
+                tags.append(word)
+        print('---------------------')
+        print(tags)
+        print('---------------------')
+        image = request.FILES.get('image')
+        post = Post(user=request.user)
+        if body:
+            post.body=body 
+        if image:
+            post.image  = image
+        post.save()
+        data['body']=post.body 
+        if post.image:
+            data['image']=post.image.url
+
+        else:
+            data['image']=None
+        data['user']=post.user.username
+        data['user_image']=post.user.user_profile.image.url
+        data['likes']=0
+        data['comments']=0
+        data['time']=post.get_post_time()
+        data['published']=post.published
+        return JsonResponse(data)
+
 def comments_get(request):
     if request.method=='POST':
         data = {}

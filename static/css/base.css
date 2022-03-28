@@ -36,3 +36,20 @@ body{
     max-width: 1300px;
     margin: 0 auto;
 }
+
+.loading--spinner{
+    width: 30px;
+    height: 30px;
+    border-top: 2px solid var(--light--color);
+    border-radius: 20px;
+    animation: rotate 0.5s linear  infinite;
+    margin: 0 auto;
+}
+@keyframes rotate {
+    0%{
+        transform: rotate(0);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
+}
