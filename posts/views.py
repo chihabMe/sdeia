@@ -4,9 +4,8 @@ from django.http import JsonResponse
 from accounts.models import Profile
 from django.shortcuts import get_object_or_404
 from django.core import serializers
-
 import json
-# Create your views here.
+
 def post_add(request):
     data={}
     if request.method=='POST':

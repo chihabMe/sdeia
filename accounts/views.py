@@ -4,6 +4,29 @@ from django.shortcuts import get_object_or_404
 from .models import  Profile 
 from django.http import JsonResponse
 # Create your views here.
+
+
+from .forms import LoginForm
+from django.contrib.auth import authenticate,login
+from django.urls import reverse
+from django.shortcuts import redirect
+# Create your views here.
+
+def login_page(request):
+    form = LoginForm(request.POST or None )
+    if request.method=='POST':
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(username=username,password=password)
+            if user is not None:
+                login(request,user)
+                return redirect(reverse("posts:home"))
+    context = {
+        'form':form
+    }
+    return render(request, 'accounts/login.html',context )
+
 def user_follow(request):
     data  = {}
     if request.method=='POST':

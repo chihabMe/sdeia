@@ -1,0 +1,24 @@
+{% extends 'default.html' %}
+{% block title  %}
+login page 
+{% endblock title %}
+
+{% block content  %}
+<div class="login--page">
+    <div class="login--content">
+    
+        <form action="" class="login--form">
+            {% csrf_token %}
+            <div class="login--field">
+                <label class="login--field--label">{{form.username.label}}</label>
+                {{form.username}}
+            </div>
+            <div class="login--field">
+                <label class="login--field--label">{{form.password.label}}</label>
+                {{form.password}}
+            </div>
+            <button class="login--button">login</button>
+        </form>
+    </div>
+</div>
+{% endblock content  %}
