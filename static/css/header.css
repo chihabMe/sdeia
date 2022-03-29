@@ -7,25 +7,7 @@
     padding:0 30px;
     border-bottom:1px solid rgba(0, 0, 0, 0.3) ;
 }
-/*
-search bar
-*/
-.header--search{
-    width: 30%;
-    min-width: 300px;
 
-}
-.header--search--input{
-    width: 100%;
-    height:2.7rem;
-    font-size: 1.2rem;
-    padding-left: 10px;
-    background-color: var(--gray-color-light);
-    border: 1px solid rgba(0, 0, 0, 0.5) ;
-    border-radius: 2px;
-    color: var(--gray-color-hard);
-    outline-color: var(--blue--color);
-}
 /*
 main navbar
 */
@@ -189,6 +171,103 @@ user account
     height: 1.3rem;
     width: 1.3rem;
 }
+
+/* search bar  */
+
+/*
+search bar
+*/
+.header--search{
+    width: 30%;
+    min-width: 300px;
+    position: relative;
+
+}
+.header--search--input{
+    width: 100%;
+    height:2.7rem;
+    font-size: 1.2rem;
+    padding-left: 10px;
+    background-color: var(--gray-color-light);
+    border: 1px solid rgba(0, 0, 0, 0.5) ;
+    border-radius: 2px;
+    color: var(--gray-color-hard);
+    outline-color: var(--blue--color);
+}
+
+.search--body{
+    position: absolute;
+    left: -12.5%;
+    margin-top: 1rem;
+    width: 120%;
+    box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.3);
+    background-color:var(--light--color);
+    max-height:19rem;
+    min-height: 10rem;
+    z-index: 200;
+    padding:1rem 1rem;
+    display: none;
+    flex-direction: column;
+    overflow-y:scroll ;
+    gap:0.5rem;
+    animation: searchShow 0.4s ease;
+}
+.search--body.active{
+    display: flex;
+}
+
+.search--result{
+    border-radius: 5px;
+    padding: 0.3rem 0.7rem;
+    cursor: pointer;
+    width: 100%;
+    gap:1rem;
+    display: flex;
+    align-items:center;
+    animation: resShow 0.4s ease;
+
+}
+.search--no--result{
+    width:100%;
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: var(--gray-color);
+
+
+
+}
+@keyframes searchShow {
+    0%{
+        transform:translateY(-100%) ;
+        opacity: 0;
+    }
+    100%{
+        transform:translateY(0) ;
+        opacity: 1;
+    }
+}
+@keyframes resShow {
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
+}
+.search--result:hover{
+    background-color: var(--gray-color-light);
+}
+.search--result--username{
+    color: var(--gray-color);
+}
+.search--result--image{
+    width:  2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+}
 @media screen and (max-width:750px){
     html{
         font-size: 14px;
@@ -220,3 +299,4 @@ user account
         justify-content: space-around;
     }
 }
+

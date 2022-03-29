@@ -13,3 +13,5 @@
     }
     return cookieValue;
 }
+let baseUrl = window.location.protocol+'//'+window.location.host
+const csrftoken = getCookie('csrftoken');

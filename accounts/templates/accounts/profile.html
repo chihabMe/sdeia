@@ -46,7 +46,9 @@
     
     <div class="profile--page--bottom">
         <div class="profile--posts">
+
             {% for post in user.user_posts.all %}
+            {% if post.image %}
             <div class="profile--post">
                 <img class="profile--post--image" src="{{post.image.url}}" alt="image">
                 <div class="image--hidden--overlay">
@@ -72,6 +74,7 @@
                     </div>               
                  </div>
             </div>
+            {% endif  %}
             {% endfor %}
         </div>
     </div>
