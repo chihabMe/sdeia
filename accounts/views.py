@@ -4,7 +4,21 @@ from django.shortcuts import get_object_or_404
 from .models import  Profile 
 from django.http import JsonResponse
 # Create your views here.
-
+def user_follow(request):
+    data  = {}
+    if request.method=='POST':
+        username = request.POST.get('username')
+        user  = get_object_or_404(User,username=username)
+        if request.user in user.user_profile.followers.all():
+            user.user_profile.followers.remove(request.user)
+            request.user.user_profile.follwing.remove(user)
+            data['operation']='unfollow'
+        else:
+            user.user_profile.followers.add(request.user)
+            request.user.user_profile.follwing.add(user)
+            data['operation']='follow'
+        data['count']=user.user_profile.get_followers_count()
+    return JsonResponse(data)
 def user_search(request):
     data = {}
     if request.method=='POST':

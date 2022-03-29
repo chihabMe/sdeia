@@ -131,7 +131,38 @@ image over lay
     gap:0.5rem;
 
 }
-
+/* profile actions /follow / options  */
+.profile--user--preview--actions{
+    display: flex;
+    gap:3rem;
+    align-items: center;
+}
+.profile--user--preview--action>button{
+    background-color: transparent;
+    outline: none;
+    border:none;
+}
+.profile--options--btn>svg{
+    width: 2rem;
+    height: 2rem;
+    color: var(--gray-color);
+    cursor: pointer;
+}
+.profile--follow--btn{
+    font-size: 1.1rem;
+    color: var(--light--color);
+    cursor: pointer;
+    padding: 0.3rem 1.7rem;
+    border-radius: 4px;
+    background-color: var(--blue--color) !important;
+    transition: opacity 0.3s ease;
+}
+.profile--follow--btn:hover{
+    opacity: 0.9;
+}
+.profile--follow--btn.cancel{
+    background-color: var( --red--color) !important;
+}
 /* media queries*/
 
 @media screen and (max-width:500px){
@@ -151,5 +182,6 @@ image over lay
         justify-content: space-around;
         gap:0;
     }
+
 }
 
