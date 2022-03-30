@@ -6,24 +6,60 @@ from django.http import JsonResponse
 from django.contrib.auth.decorators import login_required
 # Create your views here.
 
-
+from django.core.mail import send_mail
 from .forms import LoginForm,SignUpForm
 from django.contrib.auth import authenticate,login,logout
 from django.urls import reverse
 from django.shortcuts import redirect
 # Create your views here.
+#sending  confirmation token
+
+from django.contrib.sites.shortcuts import get_current_site  
+from django.utils.encoding import force_bytes, force_text  
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode  
+from django.template.loader import render_to_string  
+from .token import account_activation_token  
+###
 def logout_page(request):
     logout(request)
     return redirect(reverse('accounts:login'))
+def user_activate(request,uidb64,token):
+    try:
+         uid = force_text(urlsafe_base64_decode(uidb64))  
+         user = User.objects.get(pk=uid)
+    except(TypeError, ValueError, OverflowError, User.DoesNotExist):  
+        user = None  
+    if user is not None and account_activation_token.check_token(user, token):
+        user.is_active=True
+        user.save()
+        return redirect(reverse('posts:home'))
+
 def signup_page(request):
     form = SignUpForm(request.POST or None)
     if request.method=='POST':
         if form.is_valid():
             user = form.save(commit=False)
             print(user.username)
+            user.email = form.cleaned_data.get('email')
+            user.is_active=False
             user.save()
+
+            #getting the current site 
+            current_site = get_current_site(request)
+            print("----------current site ")
+            print(current_site)
+            print("----------current site ")
+            subject = 'accounts activation link sent to your account'
+            body = render_to_string('accounts/acc_active_email.html',{
+                'user':user,
+                'domain':current_site.domain,
+                'uid':urlsafe_base64_encode(force_bytes(user.pk)),
+                'token':account_activation_token.make_token(user), 
+            })
+            send_mail(subject,body,'chihab.me',[user.email],fail_silently=False)
+            
             return redirect(reverse('accounts:login'))
-        
+
     context={
         'form':form
         }
