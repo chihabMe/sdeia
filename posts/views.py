@@ -5,7 +5,8 @@ from accounts.models import Profile
 from django.shortcuts import get_object_or_404
 from django.core import serializers
 import json
-
+from django.contrib.auth.decorators import login_required
+@login_required
 def post_add(request):
     data={}
     if request.method=='POST':
@@ -38,7 +39,7 @@ def post_add(request):
         data['time']=post.get_post_time()
         data['published']=post.published
         return JsonResponse(data)
-
+@login_required
 def comments_get(request):
     if request.method=='POST':
         data = {}
@@ -59,7 +60,7 @@ def comments_get(request):
         data['image']=post.image.url
         data['comments']=list_of_comments
         return JsonResponse(data)
-        
+@login_required
 def comment_add(request):
     if request.method=='POST':
         data = {}
@@ -76,7 +77,7 @@ def comment_add(request):
         data['count']=post.get_comments_count()
         data['msg']='success'
         return JsonResponse(data)
-
+@login_required
 def post_like(request):
     if request.method=='POST':
         data = {}
@@ -91,6 +92,7 @@ def post_like(request):
         data['count']=post.get_likes_count()
         data['msg']='success'
         return JsonResponse(data)
+@login_required
 def home(request):
     posts = Post.objects.all()
     context  ={

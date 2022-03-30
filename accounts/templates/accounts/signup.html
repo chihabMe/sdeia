@@ -17,18 +17,21 @@ login page
                 {{form.username}}
             </div>
             <div class="login--field">
-                <label class="login--field--label">{{form.password.label}}</label>
-                {{form.password}}
+                <label class="login--field--label">{{form.password1.label}}</label>
+                {{form.password1}}
             </div>
-                {% if errors %}
-                <div class="errors ">
-
-                <p> your username or password is wrong please try again</p>
+            <div class="login--field">
+                <label class="login--field--label">{{form.password2.label}}</label>
+                {{form.password2}}
             </div>
+            {% if form.errors %}
+            <div class='errors'>
+                <p>{{form.errors}}</p]>
 
-                {% endif %}
-            <button class="login--button">login</button>
-            <a href="{% url 'accounts:signup' %}" class="go--sign--in">sign in</a>
+            </div>
+            {% endif  %}
+            <button class="login--button">sign in</button>
+            <a href={% url 'accounts:login' %} class="go--sign--in">log in</a>
 
         </form>
     </div>

@@ -42,6 +42,7 @@ class Profile(models.Model):
 
     
 @receiver(post_save, sender=User)
-def create_a_profile(sender,instance,**kwargs):
-    profile = Profile(user=instance,username=instance.username)
-    profile.save()
+def create_a_profile(sender,created,instance,**kwargs):
+    if created:
+        profile = Profile(user=instance,username=instance.username)
+        profile.save()
