@@ -1,5 +1,34 @@
 {% extends './base_page.html' %}
+{% load static %}
+
+{% block extre_links %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/profile_edit.css' %}">
+
+{% endblock extre_links %}
+
 
 {% block settings_content %}
-profile eddit
+<div class="profile--edit--content">
+	<form class="profile--edit--form" method="post">
+		{% csrf_token %}
+		<div class="profile--eddit--form--field">
+			<img src="{{request.user.user_profile.image.url}}" class="image--change--current">
+			{{form.image}}
+			<label class="field--label"> change</label>
+		</div>
+
+		<div class="profile--eddit--form--field">
+		<label class="field--label"> Bio</label>
+			{{form.bio}}
+
+		</div>
+
+		<div class="profile--eddit--form--field">
+			<label class="field--label"> website</label>
+			{{form.website}}
+		</div>
+		<button class="profle--eddit--button">save</button>
+	</form>
+</div>
 {% endblock settings_content %}

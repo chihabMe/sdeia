@@ -21,13 +21,22 @@ from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
 from django.template.loader import render_to_string
 from .token import account_activation_token
 from django.http import HttpResponse
+from .forms import ProfileEditForm
+from django.contrib import messages
 ###
 def logout_page(request):
     logout(request)
     return redirect(reverse('accounts:login'))
 
 def profile_settings(request):
-    context= {}
+    form  = ProfileEditForm(request.POST or None ,instance=request.user.user_profile)
+    if request.method=='POST':
+        if form.is_valid():
+            form.save()
+            messages.success(request,'saved !')
+    context= {
+    'form':form
+    }
     return render(request,'accounts/settings/profile_edit.html',context)
 def password_settings(request):
     context={}
