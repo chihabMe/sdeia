@@ -1,0 +1,38 @@
+.profile--page{
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	padding-top: 4rem;
+}
+.profile--content{
+	border-radius: 5px;
+	width: 100%;
+	max-width: 900px;
+	display: flex;
+	flex-direction: row;
+		box-shadow: 0 0 5px  1px rgba(0, 0, 0,0.3);
+
+}
+.profile--left{
+	width: 25%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 2rem;
+	padding: 5rem 1rem;
+	box-shadow: 1px 0 0 0 rgba(0, 0, 0,0.3);
+}
+.profile--section{
+	text-decoration: none;
+	font-size: 1.1rem;
+	color: var(--gray--color);
+	width: 80%;
+	height: 2.5rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 5px;
+}
+.profile--section:hover{
+	color: var(--blue--color);
+}

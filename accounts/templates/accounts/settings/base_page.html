@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static  %}
+
+{% block title %}
+
+{{request.user}} settings
+{% endblock title %}
+
+{% block links %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/settings.css' %}">
+{% endblock links %}
+
+{% block content %}
+
+<div class="profile--page">
+	<div class="profile--content">
+		<dic class="profile--left">
+			<a href="{% url 'accounts:settings' %}" class="profile--section">profile edit</a>
+
+			<a href="{% url 'accounts:password_setting' %}" class="profile--section">password </a>
+
+		</dic>
+		<dic class="profile--right">
+			{% block settings_content %}
+			
+			{% endblock settings_content %}
+		</dic>
+	</div>
+</div>
+
+{% endblock content %}
+

@@ -14,25 +14,37 @@ from django.shortcuts import redirect
 # Create your views here.
 #sending  confirmation token
 
-from django.contrib.sites.shortcuts import get_current_site  
-from django.utils.encoding import force_bytes, force_text  
-from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode  
-from django.template.loader import render_to_string  
-from .token import account_activation_token  
+from django.contrib.sites.shortcuts import get_current_site
+from django.utils.encoding import force_bytes
+from django.utils.encoding import  force_str as force_text
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from django.template.loader import render_to_string
+from .token import account_activation_token
+from django.http import HttpResponse
 ###
 def logout_page(request):
     logout(request)
     return redirect(reverse('accounts:login'))
+
+def profile_settings(request):
+    context= {}
+    return render(request,'accounts/settings/profile_edit.html',context)
+def password_settings(request):
+    context={}
+    return render(request,'accounts/settings/profile_password.html',context)
 def user_activate(request,uidb64,token):
     try:
-         uid = force_text(urlsafe_base64_decode(uidb64))  
-         user = User.objects.get(pk=uid)
-    except(TypeError, ValueError, OverflowError, User.DoesNotExist):  
-        user = None  
+        uid = force_text(urlsafe_base64_decode(uidb64))
+        user = User.objects.get(pk=uid)
+    except(TypeError, ValueError, OverflowError, User.DoesNotExist):
+        user = None
+        print(account_activation_token.check_token(user, token))
     if user is not None and account_activation_token.check_token(user, token):
         user.is_active=True
         user.save()
         return redirect(reverse('posts:home'))
+    else:
+        return HttpResponse("something went wrog ")
 
 def signup_page(request):
     form = SignUpForm(request.POST or None)
@@ -46,9 +58,6 @@ def signup_page(request):
 
             #getting the current site 
             current_site = get_current_site(request)
-            print("----------current site ")
-            print(current_site)
-            print("----------current site ")
             subject = 'accounts activation link sent to your account'
             body = render_to_string('accounts/acc_active_email.html',{
                 'user':user,

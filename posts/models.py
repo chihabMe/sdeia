@@ -1,3 +1,4 @@
+
 from django.db import models
 from django.urls import reverse
 from django.utils.text import slugify
@@ -36,7 +37,11 @@ class Post(models.Model):
         return res
     def save(self,*args, **kwargs):
         if not self.slug :
-            self.slug = slugify(self.body[0:30])
+            if self.body:
+                self.slug = slugify(self.body[0:30])
+            else:
+                self.slug = slugify(self.image.name.split('.')[0])
+
         super(Post,self).save(*args, **kwargs)
         if self.image:
             image = Image.open(self.image.path)

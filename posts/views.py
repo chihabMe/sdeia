@@ -12,14 +12,18 @@ def post_add(request):
     if request.method=='POST':
         body = request.POST.get('body')
         tags=[]
-        body_words_list = body.split(' ')
-        for word in body_words_list:
-            if '#' in word:
-                tags.append(word)
-        print('---------------------')
-        print(tags)
-        print('---------------------')
+        if body:
+            body_words_list = body.split(' ')
+            for word in body_words_list:
+                if '#' in word:
+                    tags.append(word)
+            print('---------------------')
+            print(tags)
+            print('---------------------')
+
         image = request.FILES.get('image')
+        if image.content_type!='image/png' or  image.content_type!='jpeg' or  image.content_type!='image/jpg':
+            iamge = None 
         post = Post(user=request.user)
         if body:
             post.body=body 
