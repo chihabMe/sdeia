@@ -10,12 +10,15 @@
 
 {% block settings_content %}
 <div class="profile--edit--content">
-	<form class="profile--edit--form" method="post">
+	<form class="profile--edit--form" method="post" enctype="multipart/form-data">
 		{% csrf_token %}
 		<div class="profile--eddit--form--field">
 			<img src="{{request.user.user_profile.image.url}}" class="image--change--current">
-			{{form.image}}
-			<label class="field--label"> change</label>
+			<label class="field--label" for="image-change"> change</label>
+			<div id="hidden-field">
+				{{form.image}}
+
+			</div>
 		</div>
 
 		<div class="profile--eddit--form--field">

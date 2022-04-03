@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 from django.core.mail import send_mail
-from .forms import LoginForm,SignUpForm
+from .forms import LoginForm,SignUpForm,ProfilePasswordChangeForm
 from django.contrib.auth import authenticate,login,logout
 from django.urls import reverse
 from django.shortcuts import redirect
@@ -24,26 +24,46 @@ from .token import account_activation_token
 from django.http import HttpResponse
 from .forms import ProfileEditForm
 from django.contrib import messages
+from django.contrib.auth import update_session_auth_hash
 ###
 #custom authenticateion
 from .EmailBackEnd import EmailAuth
 ###
+##
 def logout_page(request):
     logout(request)
     return redirect(reverse('accounts:login'))
-
+@login_required
 def profile_settings(request):
-    form  = ProfileEditForm(request.POST or None ,instance=request.user.user_profile)
+    form  = ProfileEditForm(request.POST or None ,request.FILES
+     or None,instance=request.user.user_profile)
     if request.method=='POST':
         if form.is_valid():
             form.save()
             messages.success(request,'saved !')
+
     context= {
     'form':form
     }
     return render(request,'accounts/settings/profile_edit.html',context)
+@login_required
 def password_settings(request):
-    context={}
+    form = ProfilePasswordChangeForm(request.user)
+    if request.method=='POST':
+        form = ProfilePasswordChangeForm( request.user,request.POST)
+        if form.is_valid():
+            print("valid")
+            user = form.save(commit=False)
+            #
+            user.save()
+            update_session_auth_hash(request,user)
+            messages.success(request,"password has been changed !")
+
+
+
+    context={
+        'form':form
+    }
     return render(request,'accounts/settings/profile_password.html',context)
 def user_activate(request,uidb64,token):
     try:

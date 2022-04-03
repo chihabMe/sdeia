@@ -26,7 +26,14 @@
         <!--
             end 
         -->
-    {% block content %}
+        {% for message in messages %}
+
+        <div>
+            {{message}}                
+        </div>
+        {% endfor %}
+
+        {% block content %}
     
     {% endblock content %}
     

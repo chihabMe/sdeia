@@ -50,7 +50,9 @@ class Post(models.Model):
                 image.thumbnail(output_size)
                 image.save(self.image.path)
     def __str__(self):
-        return self.body[0:20]
+        if self.body:
+            return self.body[0:20]
+        return 'none'
     
     def get_absolute_url(self):
         pass 

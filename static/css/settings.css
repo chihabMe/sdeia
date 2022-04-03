@@ -35,9 +35,13 @@
 }
 .profile--section:hover{
 	color: var(--blue--color);
+	background-color: var(--gray-color-light);
 }
 .profile--right{
 	width: 70%;
 	display: flex;
 	justify-content: center;
+}
+.errors{
+	color: var(--red--color);
 }
