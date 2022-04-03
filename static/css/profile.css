@@ -29,14 +29,15 @@
     gap: 3rem;
     align-items: center;
 }
-.profile--infos--top>div>svg{
+.profile--infos--top>a>svg{
     width: 1.8rem;
     height: 1.8rem;
     color: var(--gray-color);
     cursor: pointer;
     transition: all 0.3s ease;
 }
-.profile--infos--top>div>svg:hover{
+
+.profile--infos--top>a>svg:hover{
     color: var(--blue--color);
 }
 
@@ -163,6 +164,10 @@ image over lay
 .profile--follow--btn.cancel{
     background-color: var( --red--color) !important;
 }
+/*
+posts pagination
+*/
+
 /* media queries*/
 
 @media screen and (max-width:500px){

@@ -96,8 +96,33 @@
                 </form>
             </div>
             {% endfor  %}
+            {% if posts.has_other_pages %}
+                <div class="pagination">
+                    <ul class="pagination--content">
 
+              {% if posts.has_previous %}
+                <li><a href="?p={{ posts.previous_page_number }}">&laquo;</a></li>
+              {% else %}
+                <li class="disabled"><span>&laquo;</span></li>
+              {% endif %}
+              {% for i in posts.paginator.page_range %}
+                {% if posts.number == i %}
+                  <li class="active"><span>{{ i }} <span class="sr-only"></span></span></li>
+                {% else %}
+                  <li><a href="?p={{ i }}">{{ i }}</a></li>
+                {% endif %}
+              {% endfor %}
+              {% if posts.has_next %}
+                <li><a href="?page={{ posts.next_page_number }}">&raquo;</a></li>
+              {% else %}
+                <li class="disabled"><span>&raquo;</span></li>
+              {% endif %}
+            </ul>
         </div>
+          {% endif %}
+        </div>
+
+        
     </div>
     <div class="right--side">
         <div class="right--side--post--add">
@@ -123,7 +148,7 @@
             <h3 class="suggestions--title">
                 suggestions
             </h3>
-            <div class="suggestions--users">
+            <div class="suggestions--posts">
                 <h4 class="suggestions--user--title">people you may like </h4>
                 <h5 class="suggestion">Chihab</h5>
                 <h5 class="suggestion">adam</h5>

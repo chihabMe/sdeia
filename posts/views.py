@@ -1,3 +1,4 @@
+from os import execv
 from django.shortcuts import render
 from .models import Post,Comment
 from django.http import JsonResponse
@@ -6,6 +7,7 @@ from django.shortcuts import get_object_or_404
 from django.core import serializers
 import json
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator,PageNotAnInteger,EmptyPage
 @login_required
 def post_add(request):
     data={}
@@ -98,7 +100,20 @@ def post_like(request):
         return JsonResponse(data)
 @login_required
 def home(request):
+
     posts = Post.objects.all()
+    page = request.GET.get('p',1)
+
+    paginator = Paginator(posts,10)
+    try :
+        posts = paginator.page(page)
+
+    except PageNotAnInteger:
+        posts.page(1)
+    except EmptyPage :
+        posts = paginator.page(paginator.num_pages)
+    print(dir(posts))
+    
     context  ={
         'posts':posts,
         'page':'home'

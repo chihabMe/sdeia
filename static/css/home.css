@@ -554,6 +554,31 @@ post add model
 .post--model--close--button:hover{
     opacity: 1;
 }
+
+/*
+adding pagination
+*/
+
+.pagination{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+.pagination--content{
+    display: flex;
+    gap:1rem;
+    list-style: none;
+    color: var(--blue--color);
+
+    font-size: 1.1rem;
+}
+.pagination--content>li>a{
+    text-decoration: none;
+    color: var(--gray-color);
+}
+
+
+
 @media screen and (max-width:700px) {
     .comments--model{
         flex-direction: column;
