@@ -1,3 +1,4 @@
+import email
 from django.shortcuts import render
 from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
@@ -23,6 +24,9 @@ from .token import account_activation_token
 from django.http import HttpResponse
 from .forms import ProfileEditForm
 from django.contrib import messages
+###
+#custom authenticateion
+from .EmailBackEnd import EmailAuth
 ###
 def logout_page(request):
     logout(request)
@@ -89,7 +93,12 @@ def login_page(request):
         if form.is_valid():
             username = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password')
-            user = authenticate(username=username,password=password)
+
+            customAuth = EmailAuth()
+            user =authenticate(username=username,password=password)
+            if user is None:
+                user =  customAuth.authenticate(email=username,password=password)
+
             if user is not None:
                 login(request,user)
                 return redirect(reverse("posts:home"))

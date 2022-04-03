@@ -24,12 +24,16 @@
 	justify-content: space-between;
 }
 .boi--text{
-	height: 2rem;
+	height: 3rem;
 }
 .input--field{
 	width: 100%;
 	font-size: 1rem;
 	max-width: 420px;
+	height: 2rem;
+	border-radius: 2px ;
+	border: none;
+	background-color: var(--gray-color-light);
 }
 
 .profle--eddit--button{
