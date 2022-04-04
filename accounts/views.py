@@ -1,6 +1,5 @@
 import email
 from django.shortcuts import render
-from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
 from .models import  Profile 
 from django.http import JsonResponse
@@ -14,6 +13,7 @@ from django.urls import reverse
 from django.shortcuts import redirect
 # Create your views here.
 #sending  confirmation token
+from django.contrib.auth import get_user_model
 
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils.encoding import force_bytes
@@ -29,7 +29,11 @@ from django.contrib.auth import update_session_auth_hash
 #custom authenticateion
 from .EmailBackEnd import EmailAuth
 ###
+from django.contrib.auth.views import PasswordResetView
 ##
+
+User = get_user_model()
+
 def logout_page(request):
     logout(request)
     return redirect(reverse('accounts:login'))

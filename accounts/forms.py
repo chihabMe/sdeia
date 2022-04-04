@@ -3,7 +3,6 @@ from django.contrib.auth.forms import UserCreationForm
 from django.forms import ValidationError
 from .models import Profile
 from django.core.exceptions import ValidationError
-from django.contrib import auth
 from django.contrib.auth import get_user_model
 from django.contrib.auth.forms import PasswordChangeForm
 
@@ -20,7 +19,9 @@ class SignUpForm(UserCreationForm):
     email  = forms.EmailField(widget=forms.widgets.EmailInput(attrs={"class":"input--field"}))
     password1 = forms.CharField(label='password',widget=forms.widgets.PasswordInput(attrs={"class":"input--field"}))
     password2 = forms.CharField(label='password confirmation',widget=forms.widgets.PasswordInput(attrs={"class":"input--field"}))
-
+    class Meta:
+        model = User 
+        fields = ['username']
     def clean(self):
         if self.cleaned_data.get('password1')!=self.cleaned_data.get('password2'):
             raise ValidationError("please check your password confirmation again")

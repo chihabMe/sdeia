@@ -24,7 +24,7 @@ environ.Env.read_env()
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure--8qvl3-d9c6i=3v1s^^zsqf#b3(ez+6dx%fo+^y^v&9!d*pg+j'
+SECRET_KEY = 'django-insecusetre--8qvl3-d9c6i=3v1s^^zsqf#b3(ez+6dx%fo+^y^v&9!d*pg+j'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -35,8 +35,9 @@ ALLOWED_HOSTS = ['127.0.0.1','10.42.0.1']
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
     'django.contrib.auth',
+    'django.contrib.admin',
+    
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
@@ -148,3 +149,6 @@ EMAIL_USE_TLS = True
 EMAIL_PORT=587
 EMAIL_HOST_USER=env('EMAIL')
 EMAIL_HOST_PASSWORD=env("PASSWORD")
+#cutsom user model 
+
+AUTH_USER_MODEL = 'accounts.CustomUser'
