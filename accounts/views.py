@@ -29,7 +29,10 @@ from django.contrib.auth import update_session_auth_hash
 #custom authenticateion
 from .EmailBackEnd import EmailAuth
 ###
+from django.contrib.auth.views import PasswordResetView
 ##
+
+
 def logout_page(request):
     logout(request)
     return redirect(reverse('accounts:login'))

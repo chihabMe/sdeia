@@ -11,7 +11,6 @@ class Profile(models.Model):
     username = models.CharField(max_length=100)
     image = models.ImageField(default='images/default.png',upload_to=namer,blank=True)
     user = models.OneToOneField(User, related_name='user_profile',on_delete=models.CASCADE)
-
     bio = models.TextField(max_length=400,null=True,blank=True)
     website = models.URLField(null=True,blank=True)
 
@@ -50,4 +49,5 @@ class Profile(models.Model):
 def create_a_profile(sender,created,instance,**kwargs):
     if created:
         profile = Profile(user=instance,username=instance.username)
+
         profile.save()
