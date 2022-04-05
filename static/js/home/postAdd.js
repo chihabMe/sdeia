@@ -30,6 +30,7 @@ window.addEventListener('click',(e)=>{
 postModelAddForm.addEventListener('submit',(e)=>{
     e.preventDefault()
     let body = e.target.firstElementChild.value ;
+    e.target.firstElementChild.value='' 
     let image =     postAddImage.files[0]
 
     let data = new FormData();
@@ -57,7 +58,7 @@ postModelAddForm.addEventListener('submit',(e)=>{
         console.log(data)
         
     })
-    e.target.firstElementChild='' 
+    postModelSendBtn.innerHTML='post'
     postAddImage.value=null 
     postModelCloseFun()
 })

@@ -1,0 +1,35 @@
+<div class="chat--body">
+<div class="chat--top">
+    <button class="chat--top--close--btn">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+          </svg>
+    </button>
+<div class="chat--top--user">
+            <img  src="{{request.user.user_profile.image.url}}" alt="" class="chat--top--user--image">
+            <h4 class="chat--top--user--username">{{request.user.username}}</h4>
+        </div>
+</div>
+<div class="chat--content">
+    <div class="chat--content--message--wrapper">  
+    <span class="chat--content--message--right">hello i asm chihab </span>
+    </div>
+     <div class="chat--content--message--wrapper">  
+    <span class="chat--content--message--left">hello i asm Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint, iste cumque aliquid non ducimus dolorem autem quod assumenda dicta magni. Quia sint magni perspiciatis architecto quasi similique consequatur dolor repudiandae. chihab </span>
+    </div>
+     <div class="chat--content--message--wrapper">  
+    <span class="chat--content--message--right">hello i asm Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro praesentium amet animi assumenda quaerat iure maxime consequuntur ullam tempore soluta, nemo distinctio minima deserunt ratione atque vel placeat nostrum magnam! chihab </span>
+    </div>
+</div>
+<div class="chat--bottom">
+    <input type="text" class="chat--bottom--input">
+    <button class="chat--bottom--send--btn">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6" />
+      </svg>
+    </button>
+
+</div>
+
+</div>

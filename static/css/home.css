@@ -226,6 +226,7 @@ post comment add
     font-weight: 700;
     cursor: pointer;
     transition:all 0.3s ease;
+    font-size: 0.85rem;
 }
 .post--comment--add--button:hover{
     opacity: 0.8;
@@ -593,6 +594,12 @@ adding pagination
     .comments--model--comments{
         width: 100%;
         gap:5.5rem;
+    }
+    .right--side{
+        display: none;
+    }
+    .main--feed{
+        width: 100%;
     }
 
 }

@@ -26,11 +26,11 @@ def post_add(request):
             print('---------------------')
 
         image = request.FILES.get('image')
-
-        if image.content_type=='image/png' or  image.content_type=='image/jpeg' or  image.content_type=='image/jpg':
-            pass
-        else :
-            image=None
+        if  image :
+            if image.content_type=='image/png' or  image.content_type=='image/jpeg' or  image.content_type=='image/jpg':
+                pass    
+            else :  
+                image=None
         post = Post(user=request.user)
         if body:
             post.body=body 
@@ -81,10 +81,11 @@ def comment_add(request):
         comment = Comment(user=request.user,body=body)
         comment.post=post 
         comment.save()
-        print('--------------')
-        print(post.get_comments_count())
+        if request.user != post.user:
+            body = f'{request.user.username} commented on your post '
 
-        print('--------------')
+            notifications = PostNotifications(user=post.user,body=body,post=post)
+            notifications.save()
         data['count']=post.get_comments_count()
         data['msg']='success'
         return JsonResponse(data)
