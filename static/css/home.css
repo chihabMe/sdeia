@@ -434,7 +434,7 @@ model close button
 
 
 .comment--model--images{
-
+    background-color: var(--light--color);
     width: 60%;
     height: 100%;
 }
@@ -443,6 +443,7 @@ model close button
     border-bottom-left-radius: 5px;
     width: 100%;
     height: 100%;
+object-fit: contain;
 }
 .comments--model--comments{
     overflow-y: scroll;
@@ -460,6 +461,7 @@ model close button
     height: 35px;
     border-radius: 50%;
 }
+
 .comments--model--comment{
     width: 100%;
     height: 4rem;

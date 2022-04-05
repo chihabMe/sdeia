@@ -4,6 +4,7 @@ from django.urls import reverse
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from PIL import Image 
+from notifications.models import PostNotifications
 # Create your models here.
 def namer(instance , filename):
     return instance.username+"/profile/"+filename
@@ -31,6 +32,8 @@ class Profile(models.Model):
         return self.followers.all().count()
     def get_following_count(self):
         return self.follwing.all().count()
+    def get_notifications_count(self):
+        return PostNotifications.objects.filter(user=self.user,seen=False).count()
     def save(self,*args, **kwargs):
         super(Profile,self).save(*args, **kwargs)
         if self.image:
@@ -41,9 +44,7 @@ class Profile(models.Model):
                 image.save(self.image.path)
     def __str__(self):
         return self.username
-    
-        
-
+     
     
 @receiver(post_save, sender=User)
 def create_a_profile(sender,created,instance,**kwargs):

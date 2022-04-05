@@ -50,7 +50,7 @@
                 <div class="post--top">
                     <img src="{{post.user.user_profile.image.url}}" alt="" class="post--user--image">
                     <div class="post--user--info">
-                        <h3 class="post--user--username">{{post.user.username}}</h3>
+                        <a href='{% url "accounts:profile" post.user.username %}'  class="post--user--username">{{post.user.username}}</a>
                         <div class="post--date">{{post.get_post_time}} ago</div>
                         <div class="post--date">published on {{post.published |date:"M d, Y"}}</div>
                         <div class="post--tags">

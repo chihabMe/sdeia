@@ -1,7 +1,9 @@
-from os import execv
 from django.shortcuts import render
+
+import notifications
 from .models import Post,Comment
 from django.http import JsonResponse
+from notifications.models import PostNotifications 
 from accounts.models import Profile
 from django.shortcuts import get_object_or_404
 from django.core import serializers
@@ -24,8 +26,11 @@ def post_add(request):
             print('---------------------')
 
         image = request.FILES.get('image')
-        if image.content_type!='image/png' or  image.content_type!='jpeg' or  image.content_type!='image/jpg':
-            iamge = None 
+
+        if image.content_type=='image/png' or  image.content_type=='image/jpeg' or  image.content_type=='image/jpg':
+            pass
+        else :
+            image=None
         post = Post(user=request.user)
         if body:
             post.body=body 
@@ -97,13 +102,17 @@ def post_like(request):
             data['operation']='like'
         data['count']=post.get_likes_count()
         data['msg']='success'
+        if post.user != request.user:
+            body = f'{request.user.username} liked your post '
+            notification = PostNotifications(user=post.user,post=post,body=body)
+            notification.save()
         return JsonResponse(data)
 @login_required
 def home(request):
 
     posts = Post.objects.all()
     page = request.GET.get('p',1)
-
+    
     paginator = Paginator(posts,10)
     try :
         posts = paginator.page(page)
@@ -112,10 +121,13 @@ def home(request):
         posts.page(1)
     except EmptyPage :
         posts = paginator.page(paginator.num_pages)
-    print(dir(posts))
-    
+    notifications = PostNotifications.objects.filter(user=request.user,seen=False)
+    if not notifications.exists():
+        notifications=None
     context  ={
         'posts':posts,
-        'page':'home'
+        'page':'home',
+        'notifications':notifications
+    
     }
     return render(request,'posts/home.html',context)

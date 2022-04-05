@@ -14,7 +14,7 @@
 		{% csrf_token %}
 		<div class="profile--eddit--form--field">
 			<img src="{{request.user.user_profile.image.url}}" class="image--change--current">
-			<label class="field--label" for="image-change"> change</label>
+			<label class="field--label" for="image-change"><div class="image--change--button">change</div> </label>
 			<div id="hidden-field">
 				{{form.image}}
 

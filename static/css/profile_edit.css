@@ -61,3 +61,18 @@
 #hidden-field{
 	display: none;
 }
+.image--change--button{
+	border:none;
+	border-radius: 5px;
+	width: 6rem;
+	height: 2rem;
+	cursor: pointer;
+	background-color: var(--blue--color);
+	font-weight: 400;
+	font-size: 0.9rem;
+	color: var(--light--color);
+	display: flex;
+	align-items: center;
+
+	justify-content: center;
+}

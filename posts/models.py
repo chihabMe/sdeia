@@ -41,7 +41,7 @@ class Post(models.Model):
                 self.slug = slugify(self.body[0:30])
             else:
                 self.slug = slugify(self.image.name.split('.')[0])
-
+                #print(str(self.image.name).split('.')[0])
         super(Post,self).save(*args, **kwargs)
         if self.image:
             image = Image.open(self.image.path)
@@ -52,7 +52,7 @@ class Post(models.Model):
     def __str__(self):
         if self.body:
             return self.body[0:20]
-        return 'none'
+        return self.user.username+":image without a body     "
     
     def get_absolute_url(self):
         pass 
