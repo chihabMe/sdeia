@@ -71,8 +71,13 @@ def comments_get(request):
         data['image']=post.image.url
         data['comments']=list_of_comments
         return JsonResponse(data)
+
+
+
+
 @login_required
 def comment_add(request):
+
     if request.method=='POST':
         data = {}
         post_id = request.POST.get('postId')
