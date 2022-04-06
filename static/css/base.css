@@ -60,6 +60,11 @@ body{
     background-color: var(--light--color);
     font-size: 0.9rem;
     border-radius: 10px;
+display: none;
+
+}
+.chat--body.active{
+    display: flex;
 }
 .chat--top{
     width: 100%;
