@@ -64,6 +64,7 @@ class Comment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE,related_name='user_comments')
     likes = models.ManyToManyField(User,related_name='user_comments_likes')
     post  = models.ForeignKey(Post, on_delete=models.CASCADE,related_name='post_comments')
+    replays = models.ForeignKey('Comment',on_delete=models.CASCADE,related_name='comment_replays',null=True)
     def get_likes_count(self):
         return self.likes.all().count()
     def __str__(self):

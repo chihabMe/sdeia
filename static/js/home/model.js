@@ -33,14 +33,14 @@ for(let i = 0 ; i<length;i++){
            /*
     addig the model mody 
     */
-    let imageDiv = document.createElement('div')
-    imageDiv.classList.add('comment--model--images')
-    imageDiv.innerHTML=`
-    <img src="${data.image}" alt="" class="comments--model--image">
+ //   let imageDiv = document.createElement('div')
+//    imageDiv.classList.add('comment--model--images')
+ //   imageDiv.innerHTML=`
+  //  <img src="${data.image}" alt="" class="comments--model--image">
     
-    ` 
+  //  ` 
     //adding the image div to the model 
-    modelContent.appendChild(imageDiv)
+    //modelContent.appendChild(imageDiv)
     //creating  the comments div 
     console.log(data)
     let commentsDiv = document.createElement('div')

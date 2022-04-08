@@ -84,7 +84,8 @@ def comment_add(request):
         body = request.POST.get('body')
         post = get_object_or_404(Post,id=post_id)
         comment = Comment(user=request.user,body=body)
-        comment.post=post 
+
+        comment.post=post
         comment.save()
         if request.user != post.user:
             body = f'{request.user.username} commented on your post '
@@ -116,7 +117,9 @@ def post_like(request):
 @login_required
 def home(request):
 
-    posts = Post.objects.all()
+    #posts = Post.objects.all()
+    posts = Post.objects.raw('SELECT * FROM posts_post ORDER BY published DESC  ')
+    print(posts)
     page = request.GET.get('p',1)
     
     paginator = Paginator(posts,10)
